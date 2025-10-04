@@ -1,18 +1,26 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import pandas as pd
 import numpy as np
-import os
 
-# Load telemetry bundle once on cold start
-TELEMETRY_PATH = os.path.join(os.path.dirname(__file__), "..", "telemetry.csv")
-df = pd.read_csv(TELEMETRY_PATH)  
-# Expected columns: region, latency_ms, uptime (1 or 0)
+# --- Inline telemetry sample ---
+# Replace with your real telemetry rows
+telemetry_data = [
+    {"region": "emea", "latency_ms": 150, "uptime": 1},
+    {"region": "emea", "latency_ms": 200, "uptime": 1},
+    {"region": "emea", "latency_ms": 170, "uptime": 1},
+    {"region": "amer", "latency_ms": 130, "uptime": 1},
+    {"region": "amer", "latency_ms": 190, "uptime": 0},
+    {"region": "amer", "latency_ms": 140, "uptime": 1},
+]
 
+df = pd.DataFrame(telemetry_data)
+
+# --- FastAPI App ---
 app = FastAPI()
 
-# Enable CORS for all origins and POST only
+# Enable CORS (allow all origins, POST only)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
