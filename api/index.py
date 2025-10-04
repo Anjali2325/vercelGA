@@ -32,7 +32,7 @@ def load_telemetry_data():
         with open('api/q-vercel-latency.json', 'r') as f:
             return json.load(f)
 
-@app.post("/api/analyze")
+@app.post("/api/index")
 async def analyze_latency(request: AnalysisRequest):
     try:
         data = load_telemetry_data()
