@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/latency-check.py": {
-      "runtime": "now-php@1.0.0"
+      "runtime": "vercel-python@3.9"
     }
   }
 }
