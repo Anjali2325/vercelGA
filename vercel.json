@@ -1,6 +1,6 @@
 {
   "builds": [
-    { "src": "api/latency-check.py", "use": "@vercel/python" }
+    { "src": "api/telemetry.py", "use": "@vercel/python" }
   ]
 }
 
