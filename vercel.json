@@ -1,7 +1,6 @@
 {
-  "functions": {
-    "api/latency-check.py": {
-      "runtime": "vercel-python@3.9"
-    }
-  }
+  "builds": [
+    { "src": "api/latency-check.py", "use": "@vercel/python" }
+  ]
 }
+
