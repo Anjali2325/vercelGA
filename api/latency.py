@@ -2,6 +2,14 @@ from http.server import BaseHTTPRequestHandler
 import json
 import statistics
 
+pp.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+    expose_headers=["*"])
+
 TELEMETRY_DATA = [
     {"region": "emea", "latency_ms": 120, "uptime": 0.998},
     {"region": "amer", "latency_ms": 95, "uptime": 0.995},
