@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/latency-check.py": {
+      "runtime": "python3.9"
+    }
+  }
+}
