@@ -4,8 +4,7 @@ from pydantic import BaseModel
 import pandas as pd
 import numpy as np
 
-# --- Inline telemetry sample ---
-# Replace with your real telemetry rows
+# Sample telemetry inline (replace with real data if needed)
 telemetry_data = [
     {"region": "emea", "latency_ms": 150, "uptime": 1},
     {"region": "emea", "latency_ms": 200, "uptime": 1},
@@ -17,10 +16,9 @@ telemetry_data = [
 
 df = pd.DataFrame(telemetry_data)
 
-# --- FastAPI App ---
 app = FastAPI()
 
-# Enable CORS (allow all origins, POST only)
+# Enable CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -44,16 +42,15 @@ async def metrics(query: Query):
         latencies = region_df["latency_ms"]
         uptime = region_df["uptime"]
 
-        avg_latency = float(latencies.mean())
-        p95_latency = float(np.percentile(latencies, 95))
-        avg_uptime = float(uptime.mean())
-        breaches = int((latencies > query.threshold_ms).sum())
-
         results[region] = {
-            "avg_latency": round(avg_latency, 2),
-            "p95_latency": round(p95_latency, 2),
-            "avg_uptime": round(avg_uptime, 4),
-            "breaches": breaches,
+            "avg_latency": round(float(latencies.mean()), 2),
+            "p95_latency": round(float(np.percentile(latencies, 95)), 2),
+            "avg_uptime": round(float(uptime.mean()), 4),
+            "breaches": int((latencies > query.threshold_ms).sum()),
         }
 
     return results
+
+# 👇 IMPORTANT: Vercel adapter
+from mangum import Mangum
+handler = Mangum(app)
