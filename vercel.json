@@ -1,6 +1,0 @@
-{
-  "builds": [
-    { "src": "api/telemetry.py", "use": "@vercel/python" }
-  ]
-}
-
