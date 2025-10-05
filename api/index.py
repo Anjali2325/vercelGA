@@ -14,10 +14,10 @@ app = FastAPI()
 # Enable CORS for POST requests from any origin
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["POST", "OPTIONS"],  # Allows POST and preflight OPTIONS
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["POST", "OPTIONS"], 
+    allow_headers=["*"],
 )
 
 # --- Data Loading (Simulated) ---
