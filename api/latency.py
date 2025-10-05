@@ -17,8 +17,8 @@ app.add_middleware(
 )
 
 # Load the dataset once when the app starts
-DATA_FILE = Path(_file_).parent / "q-vercel-latency.json"
-df = pd.read_json(DATA_FILE)
+ DATA_FILE = Path(__file__).parent.parent / "q-vercel-latency.json"
+
 
 
 @app.get("/")
